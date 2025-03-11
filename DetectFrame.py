@@ -42,7 +42,7 @@ if circles is not None:
     circles = np.uint16(np.around(circles))  # 将坐标转换为整数
     for i in circles[0, :]:
         cv2.circle(image, (i[0], i[1]), i[2], (0, 255, 0), 2)  # 画圆
-        cv2.circle(image, (i[0], i[1]), 2, (0, 0, 255), 3)  # 画圆心
+        cv2.circle(image, (i[0], i[1]), 2, (0, 0, 255), -1)  # 画圆心
 
 # 显示结果
 cv2.imshow("Detected Circles", image)
