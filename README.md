@@ -62,7 +62,8 @@ Use OpenCV for circle detection, such as the `HoughCircles` method, to detect sm
 
 
 #### **代码实现 (DBSCAN)**
-
+- The below code is only illustrating the steps of how to use DBSCAN to detect the dot frame in a VisiumST image. 
+- Parameters used in functions need to be adjusted to fit the tasks.
 ```python
 import cv2
 import numpy as np
