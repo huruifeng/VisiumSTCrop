@@ -1,3 +1,36 @@
+## VisiumST Dot Frame Detection and Cropping
+
+### Detecting the Dot Frame in VisiumST Images
+
+Use OpenCV for circle detection, such as the `HoughCircles` method, to detect small circular dots on the dot frame. Precisely extract the Visium dot frame using the following steps:
+
+#### Steps:
+1. **Preprocessing**: Convert the image to a binary image using adaptive thresholding.
+2. **Circle Detection**: Use the `HoughCircles` method to detect small circular dots and obtain possible dot locations (**the number of detected dots is highly sensitive to parameter settings**).
+3. **Point Filtering**: Remove dots that do not belong to the dot frame or are located externally.
+4. **Bounding Box Calculation**: Ensure that only the dot frame and its internal region are included.
+
+#### Step Explanation:
+- Detect all circular dots.
+- **Use DBSCAN clustering or Hough transform to identify points on the frame**.
+- Compute the **bounding box** of the dot frame.
+- **Filter out points outside the bounding box**, keeping only dots inside the frame and removing false detections.
+- Display only dots on the dot frame and within its boundaries.
+
+#### DBSCAN Clustering
+- Use DBSCAN clustering with an appropriate threshold to group the dots.
+- Cluster points and fit straight lines to identify the four edges.
+- Filter out points outside the bounding box to ensure only frame points are used.
+- Compute the bounding box based on these edge points.
+
+#### Hough Line Detection
+- Detect all possible circular dots using `cv2.HoughCircles` to find potential dot frame points in the image.
+- Use these detected dots for Hough line transformation, analyze their distribution, and extract the four primary lines (dot frame boundaries).
+- Filter out only the points on the dot frame by computing the perpendicular distance from each dot to the detected lines, keeping only dots near the four edges.
+- **Note: Some dots may be on the extended line segments but still outside the dot frame**.
+
+
+------
 ## VisiumST Dot Frame 检测与裁剪
 ### 在 VisiumST 图像中检测 dot frame。
 
