@@ -3,9 +3,9 @@
 
 使用 OpenCV 进行圆形检测，例如 HoughCircles 来检测 dot frame 上的小圆点。 精准提取 Visium dot frame。
 采用以下步骤：
-1. **预处理**：使用自适应阈值或 Canny 边缘检测提取 dot frame。
-2. **圆形检测**：使用 HoughCircles 方法来检测小圆点。
-3. **点筛选**：去除不属于 dot frame 的点。
+1. **预处理**：使用自适应阈值转换图片为二值图。
+2. **圆形检测**：使用 HoughCircles 方法来检测小圆点，得到可能的圆点。（**圆点的数量对参数十分敏感**）。
+3. **点筛选**：去除不属于 dot frame或外部的点。
 4. **计算外接矩形**：确保仅包含 dot frame 及其内部区域。
 
 #### **步骤说明**
@@ -14,7 +14,6 @@
 - 计算 dot frame 的 **外接矩形**。
 - **过滤掉矩形外的点**，仅保留 frame 内部的点，过滤掉误检测到的外部点。
 - 只显示 dot frame 上的以及内部的点。
-
 
 #### **DBSCAN 聚类**
 - 使用 DBSCAN 进行点聚类，并选取合适的阈值。
@@ -26,9 +25,10 @@
 - 检测所有可能的圆点，使用 cv2.HoughCircles 检测图像中的所有潜在 dot frame 圆点。
 - 使用这些圆点进行霍夫线变换,计算点的分布，提取主要的四条线（dot frame 的边界）。
 - 筛选出 dot frame 上的点,计算点到直线的垂直距离，只保留靠近四条边的点。
+- **注意：有可能点处于线段的延长线上，但是处于 dot frame 外部**
 
 
-#### **代码实现**
+#### **代码实现 (DBSCAN)**
 
 ```python
 import cv2
@@ -83,11 +83,4 @@ cv2.imshow("Filtered Dot Frame Circles", output)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
-
-#### **最终优化点**
-✅ **使用 DBSCAN 过滤非 dot frame 的点**（仅保留矩形四边上的点）  
-✅ **用 frame 点计算精确外接矩形**（排除外部点）  
-✅ **最终仅显示 frame 内部的点**  
-
-🚀 **这样可以确保 dot frame 识别更精准，避免误检测外部的点！** 🎯
 
