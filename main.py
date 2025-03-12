@@ -10,7 +10,7 @@ from DetectFrame import detect_frame_dots
 
 
 
-image_folder = "Data/images"
+image_folder = "images"
 image_ls = [img for img in os.listdir(image_folder) if img.endswith(".png")]
 
 output_folder = "outputs"
