@@ -4,9 +4,9 @@ import cv2
 from matplotlib import pyplot as plt
 
 from DetectFrame.DetectDots import detect_frame_dots
-from DetectFrame.FilterFrameDots_DBSCAN import filter_dots_dbscan
-from DetectFrame.FilterFrameDots_HoughLine import filter_dots_houghline
-from DetectFrame.FilterFrameDots_Hist import filter_dots_hist
+from DetectFrame.FilterDots_DBSCAN import filter_dots_dbscan
+from DetectFrame.FilterDots_HoughLine import filter_dots_houghline
+from DetectFrame.FilterDots_Hist import filter_dots_hist
 
 
 image_folder = "images"

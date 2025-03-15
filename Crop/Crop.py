@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-from DetectFrame.FilterFrameDots_DBSCAN import detect_frame_dbscan
+from DetectFrame.FilterDots_DBSCAN import detect_frame_dbscan
 
 
 
