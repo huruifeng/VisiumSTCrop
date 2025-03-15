@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 
-def detect_frame_houghline(image_file):
+def filter_dots_houghline(image_file):
     image = cv2.imread(image_file)
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

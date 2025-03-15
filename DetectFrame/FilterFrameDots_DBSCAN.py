@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 from sklearn.cluster import DBSCAN
 
-def detect_frame_dbscan(image_file):
+def filter_dots_dbscan(image_file):
     image = cv2.imread(image_file)
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

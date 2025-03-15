@@ -3,10 +3,10 @@ import os
 import cv2
 from matplotlib import pyplot as plt
 
-from DetectFrame.DetectFrame_DBSCAN import detect_frame_dbscan
-from DetectFrame.DetectFrame_HoughLine import detect_frame_houghline
-from DetectFrame.DetectFrame import detect_frame_dots
-from DetectFrame.DetectFrame_Hist import detect_frame_hist
+from DetectFrame.DetectDots import detect_frame_dots
+from DetectFrame.FilterFrameDots_DBSCAN import filter_dots_dbscan
+from DetectFrame.FilterFrameDots_HoughLine import filter_dots_houghline
+from DetectFrame.FilterFrameDots_Hist import filter_dots_hist
 
 
 image_folder = "images"
@@ -19,9 +19,9 @@ for i, img in enumerate(image_ls):
 
     original_img = cv2.imread(image_folder + "/" + img)
     circles_dots, output_dots = detect_frame_dots(image_folder + "/" + img)
-    circles_dbsacn, output_dbscan = detect_frame_dbscan(image_folder + "/" + img)
-    circles_houghline, output_houghline = detect_frame_houghline(image_folder + "/" + img)
-    circles_hist, output_hist = detect_frame_hist(image_folder + "/" + img)
+    circles_dbsacn, output_dbscan = filter_dots_dbscan(image_folder + "/" + img)
+    circles_houghline, output_houghline = filter_dots_houghline(image_folder + "/" + img)
+    circles_hist, output_hist = filter_dots_hist(image_folder + "/" + img)
 
     # 显示结果
     plt.figure(figsize=(25, 8))

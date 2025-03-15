@@ -4,7 +4,6 @@ import numpy as np
 
 
 def detect_frame_dots(image):
-
     image = cv2.imread(image)
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
