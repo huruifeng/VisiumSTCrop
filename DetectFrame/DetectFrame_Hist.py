@@ -35,26 +35,29 @@ def detect_frame_hist(image_file):
         y_coords = np.array([y for x, y, r in circles])
 
         # 确定直方图的边界阈值
-        hist_bins = 100
-        threshold = 5  # 每个直方图bin的最小点数
+        step_size = 2
+        threshold = 10  # 每个直方图bin的最小点数
 
-        # 计算x方向的边界
-        hist_x, bins_x = np.histogram(x_coords, bins=hist_bins)
+        # x方向计数
+        hist_bins = np.arange(np.min(x_coords), np.max(x_coords) + 1, step_size)
+        hist_x, _ = np.histogram(x_coords, bins=hist_bins)
         valid_bins_x = np.where(hist_x >= threshold)[0]
         if len(valid_bins_x) > 0:
-            x_left = bins_x[valid_bins_x[0]]
-            x_right = bins_x[valid_bins_x[-1] + 1]
+            x_left = hist_bins[valid_bins_x[0]]
+            x_right = hist_bins[valid_bins_x[-1] + 1]
         else:
             x_left, x_right = np.min(x_coords), np.max(x_coords)
 
-        # 计算y方向的边界
-        hist_y, bins_y = np.histogram(y_coords, bins=hist_bins)
+        # y方向计数
+        hist_bins = np.arange(np.min(y_coords), np.max(y_coords) + 1, step_size)
+        hist_y, _ = np.histogram(y_coords, bins=hist_bins)
         valid_bins_y = np.where(hist_y >= threshold)[0]
         if len(valid_bins_y) > 0:
-            y_top = bins_y[valid_bins_y[0]]
-            y_bottom = bins_y[valid_bins_y[-1] + 1]
+            y_top = hist_bins[valid_bins_y[0]]
+            y_bottom = hist_bins[valid_bins_y[-1] + 1]
         else:
             y_top, y_bottom = np.min(y_coords), np.max(y_coords)
+
 
         # 过滤位于边界内的点
         filtered_circles = [
