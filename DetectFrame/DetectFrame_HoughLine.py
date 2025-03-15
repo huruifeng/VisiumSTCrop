@@ -43,6 +43,7 @@ def detect_frame_houghline(image_file):
 
     # 创建输出图像
     output = image.copy()
+    filtered_points = []
 
     # 第二步：使用所有检测到的圆点来进行霍夫线变换
     if all_circle_points:
@@ -88,7 +89,6 @@ def detect_frame_houghline(image_file):
         x_max, y_max = np.max(frame_points, axis=0)
 
         # **第三步：筛选出真正属于 frame 的点**
-        filtered_points = []
 
         for (x, y) in all_circle_points:
             # 计算点到所有霍夫线的最小距离

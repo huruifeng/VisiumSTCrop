@@ -37,6 +37,7 @@ def detect_frame_dbscan(image_file):
 
     # 创建显示结果的副本
     output = image.copy()
+    filtered_circles = []
 
     if circles is not None:
         circles = np.uint16(np.around(circles[0, :]))
