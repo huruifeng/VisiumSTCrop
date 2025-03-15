@@ -35,7 +35,7 @@ def detect_frame_hist(image_file):
         y_coords = np.array([y for x, y, r in circles])
 
         # 确定直方图的边界阈值
-        hist_bins = 20
+        hist_bins = 100
         threshold = 5  # 每个直方图bin的最小点数
 
         # 计算x方向的边界

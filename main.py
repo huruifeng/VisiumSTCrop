@@ -47,7 +47,7 @@ for i, img in enumerate(image_ls):
     plt.axis("off")
 
     plt.subplot(1, 5, 5)
-    plt.imshow(output_houghline)
+    plt.imshow(output_hist)
     plt.title("Detected Frame - Hist")
     plt.axis("off")
 
