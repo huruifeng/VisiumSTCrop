@@ -115,7 +115,7 @@ def filter_frame_dots(circles, image_file=None, method="DBSCAN"):
                     filtered_circles.append((x, y, 3))
                     if image_file is not None:
                         cv2.circle(image, (x, y), 3, (0, 0, 255), -1)  # 红色点表示保留的点
-    else:
+    elif method == "Hist":
         # 提取坐标用于直方图分析
         x_coords = np.array([x for x, y, r in circles])
         y_coords = np.array([y for x, y, r in circles])
@@ -155,6 +155,9 @@ def filter_frame_dots(circles, image_file=None, method="DBSCAN"):
             for x, y, r in filtered_circles:
                 cv2.circle(image, (x, y), r, (0, 255, 0), 2)
                 cv2.circle(image, (x, y), 2, (0, 0, 255), -1)
+
+    else:
+        filtered_circles = circles
 
     if image_file is not None:
         return filtered_circles, image
