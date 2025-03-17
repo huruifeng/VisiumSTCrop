@@ -19,15 +19,21 @@ os.makedirs(output_folder, exist_ok= True)
 for i, img in enumerate(image_ls):
     print(i, img)
 
+    # 读取图像 Original Image
     original_img = cv2.imread(image_folder + "/" + img)
+
+    # 检测点 Detected Dots
     circles_dots, output_dots = detect_frame_dots(image_folder + "/" + img)
+
+    # 过滤点 Filter Dots
     circles_dbsacn, output_dbscan = filter_dots_dbscan(image_folder + "/" + img)
     circles_houghline, output_houghline = filter_dots_houghline(image_folder + "/" + img)
     circles_hist, output_hist = filter_dots_hist(image_folder + "/" + img)
 
-    circles_frame, output_frame = locate_frame(circles_dots, image_folder + "/" + img)
+    # 定位边框 Locate Frame
+    circles_frame, output_frame = locate_frame(circles_houghline, image_folder + "/" + img)
 
-    # 显示结果
+    # 显示结果 Show Results
     plt.figure(figsize=(25, 8))
 
     plt.subplot(1, 6, 1)

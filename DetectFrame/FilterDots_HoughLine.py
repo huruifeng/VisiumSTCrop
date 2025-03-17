@@ -120,7 +120,7 @@ def filter_dots_houghline(image_file):
 
                 # 允许点在线段的外部延长线上 **但误差要小**
                 if -30 <= dot_product <= segment_length_sq + 30:  # 允许稍微超出
-                    filtered_points.append((x, y))
+                    filtered_points.append((x, y, 3))
                     cv2.circle(output, (x, y), 3, (0, 0, 255), -1)  # 红色点表示保留的点
 
     return filtered_points, output

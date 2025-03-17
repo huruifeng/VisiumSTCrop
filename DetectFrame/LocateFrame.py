@@ -18,13 +18,13 @@ def locate_frame(circles, image_file=None):
     threshold = 5  # 每行/列的最小点数
 
     valid_x = []
-    for i in range(0, height, step_size):
+    for i in range(0, width):
         count_x = len([x for x in x_coords if x >= i and x < i + step_size])
         if count_x >= threshold:
             valid_x.append(i)
 
     valid_y = []
-    for i in range(0, width):
+    for i in range(0, height):
         count_y = len([y for y in y_coords if y >= i and y < i + step_size])
         if count_y >= threshold:
             valid_y.append(i)
