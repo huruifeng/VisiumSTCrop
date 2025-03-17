@@ -33,14 +33,15 @@ def detect_frame_dots(image):
     检测到了很多外部圆：
         减小 dp（如 1.2 -> 0.6）
     """
+
     circles = cv2.HoughCircles(blurred, cv2.HOUGH_GRADIENT, dp=0.6, minDist=3,param1=30, param2=10, minRadius=0, maxRadius=3)
 
     # 创建显示结果的副本
     output = image.copy()
     # 如果检测到圆，则进行绘制
     if circles is not None:
-        circles = np.uint16(np.around(circles))  # 将坐标转换为整数
-        for i in circles[0, :]:
+        circles = np.uint16(np.around(circles[0, :]))  # 将坐标转换为整数
+        for i in circles:
             cv2.circle(output, (i[0], i[1]), i[2], (0, 255, 0), 2)  # 画圆
             cv2.circle(output, (i[0], i[1]), 2, (0, 0, 255), -1)  # 画圆心
 

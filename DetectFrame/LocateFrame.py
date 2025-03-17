@@ -15,7 +15,7 @@ def locate_frame(circles, image_file=None):
 
     # 确定直方图的边界阈值
     step_size = 2
-    threshold = 5  # 每个直方图bin的最小点数
+    threshold = 5  # 每行/列的最小点数
 
     valid_x = []
     for i in range(0, height, step_size):
@@ -24,7 +24,7 @@ def locate_frame(circles, image_file=None):
             valid_x.append(i)
 
     valid_y = []
-    for i in range(0, width, step_size):
+    for i in range(0, width):
         count_y = len([y for y in y_coords if y >= i and y < i + step_size])
         if count_y >= threshold:
             valid_y.append(i)
@@ -38,7 +38,8 @@ def locate_frame(circles, image_file=None):
 
 
     for x, y, r in valid_circles:
-        cv2.circle(image, (x, y), r, (0, 255, 0), 2)
+        cv2.circle(image, (x, y), r, (0, 255, 0), 2)  # 绿色圆圈
+        cv2.circle(image, (x, y), 2, (0, 0, 255), -1)  # 红色中心点
 
     cv2.rectangle(image, (x_left, y_top), (x_right, y_bottom), (0, 0, 255), 2)
 
