@@ -118,3 +118,9 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
 
+### Example results
+
+![Detected Dot Frame](./outputs/HC_BN1762_MTG_VisiumST_batch25_rep1.png)
+![Detected Dot Frame](./outputs/HC_BN1822_MTG_VisiumST_batch21_rep1.png)
+
+
